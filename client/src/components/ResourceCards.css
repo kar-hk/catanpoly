@@ -1,0 +1,129 @@
+.resource-cards {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  width: 65px;
+  background: linear-gradient(180deg, var(--bg-tertiary), var(--bg-secondary));
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.resource-card.empty {
+  opacity: 0.5;
+}
+
+.resource-card.selectable {
+  cursor: pointer;
+}
+
+.resource-card.selectable:hover:not(.empty) {
+  transform: translateY(-4px);
+  border-color: var(--resource-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card-top {
+  background: var(--resource-color);
+  padding: 0.4rem;
+  text-align: center;
+}
+
+.resource-icon {
+  font-size: 1.3rem;
+}
+
+.card-bottom {
+  padding: 0.3rem;
+  text-align: center;
+  position: relative;
+}
+
+.resource-name {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.resource-count {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.selected-indicator {
+  position: absolute;
+  top: -8px;
+  right: 4px;
+  background: var(--player-red);
+  color: white;
+  padding: 0.1rem 0.4rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Compact mode */
+.resource-cards.compact {
+  gap: 0.3rem;
+}
+
+.resource-cards.compact .resource-card {
+  width: 50px;
+}
+
+.resource-cards.compact .card-top {
+  padding: 0.3rem;
+}
+
+.resource-cards.compact .resource-icon {
+  font-size: 1.1rem;
+}
+
+.resource-cards.compact .resource-name {
+  font-size: 0.55rem;
+}
+
+.resource-cards.compact .resource-count {
+  font-size: 1rem;
+}
+
+.total-cards {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+}
+
+.total-cards .card-icon {
+  font-size: 1.2rem;
+}
+
+.total-cards .count {
+  color: var(--text-secondary);
+}
+
+/* Right-click info hint */
+.resource-card.has-info {
+  cursor: context-menu;
+}
+
+.resource-card.has-info:hover:not(.empty):not(.selectable) {
+  transform: translateY(-2px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 4px 12px rgba(212, 169, 66, 0.2);
+}
+

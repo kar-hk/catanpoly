@@ -1,0 +1,234 @@
+.rules-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease-out;
+  backdrop-filter: blur(4px);
+}
+
+.rules-modal {
+  background: linear-gradient(135deg, #1a1f2e 0%, #252d3d 100%);
+  border: 2px solid var(--accent-gold);
+  border-radius: 16px;
+  width: 90vw;
+  max-width: 1000px;
+  height: 85vh;
+  max-height: 700px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(212, 169, 66, 0.1);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rules-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s;
+}
+
+.rules-close-btn:hover {
+  border-color: var(--player-red);
+  color: var(--player-red);
+  transform: scale(1.1);
+}
+
+.rules-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(135deg, rgba(212, 169, 66, 0.1) 0%, transparent 100%);
+}
+
+.rules-header h2 {
+  color: var(--accent-gold);
+  font-size: 1.8rem;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(212, 169, 66, 0.3);
+}
+
+.rules-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.rules-nav {
+  width: 220px;
+  min-width: 220px;
+  background: rgba(0, 0, 0, 0.2);
+  border-right: 1px solid var(--border-color);
+  padding: 1rem 0;
+  overflow-y: auto;
+}
+
+.rules-nav-btn {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  text-align: left;
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.rules-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.rules-nav-btn.active {
+  background: rgba(212, 169, 66, 0.1);
+  color: var(--accent-gold);
+  border-left-color: var(--accent-gold);
+}
+
+.rules-content {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+}
+
+.rules-content h3 {
+  color: var(--accent-gold);
+  font-size: 1.5rem;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.rules-text {
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+.rules-text h4 {
+  color: var(--accent-copper);
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.8rem 0;
+}
+
+.rules-text p {
+  margin: 0.5rem 0;
+}
+
+.rules-text strong {
+  color: var(--accent-gold);
+}
+
+.rules-text li {
+  margin: 0.3rem 0;
+  margin-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.rules-text br {
+  display: block;
+  content: "";
+  margin: 0.5rem 0;
+}
+
+/* Scrollbar styling */
+.rules-content::-webkit-scrollbar,
+.rules-nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.rules-content::-webkit-scrollbar-track,
+.rules-nav::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.rules-content::-webkit-scrollbar-thumb,
+.rules-nav::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.rules-content::-webkit-scrollbar-thumb:hover,
+.rules-nav::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .rules-modal {
+    width: 95vw;
+    height: 90vh;
+    max-width: none;
+    max-height: none;
+  }
+  
+  .rules-container {
+    flex-direction: column;
+  }
+  
+  .rules-nav {
+    width: 100%;
+    min-width: auto;
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .rules-nav-btn {
+    width: auto;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 4px;
+  }
+  
+  .rules-nav-btn.active {
+    border-left-color: transparent;
+    border-bottom-color: var(--accent-gold);
+  }
+  
+  .rules-content {
+    padding: 1rem;
+  }
+  
+  .rules-content h3 {
+    font-size: 1.2rem;
+  }
+}
+

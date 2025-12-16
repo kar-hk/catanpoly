@@ -1,0 +1,64 @@
+.dice-display {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.dice-display.seven {
+  border-color: var(--player-red);
+  box-shadow: 0 8px 30px rgba(230, 57, 70, 0.3);
+}
+
+.dice-container {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.die {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dice-display.animating .die {
+  animation: diceRoll 0.5s ease-out;
+}
+
+@keyframes diceRoll {
+  0% { transform: rotateX(0deg) rotateY(0deg); opacity: 0; }
+  25% { transform: rotateX(90deg) rotateY(90deg); }
+  50% { transform: rotateX(180deg) rotateY(180deg); }
+  75% { transform: rotateX(270deg) rotateY(270deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg); opacity: 1; }
+}
+
+.dice-total {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.dice-display.seven .dice-total {
+  color: var(--player-red);
+}
+
+.robber-alert {
+  font-size: 1rem;
+  animation: pulse 1s ease-in-out infinite;
+}
+

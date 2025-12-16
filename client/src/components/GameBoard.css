@@ -1,0 +1,618 @@
+.game-board {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  background: 
+    radial-gradient(ellipse at 50% 50%, rgba(42, 157, 143, 0.05) 0%, transparent 60%),
+    var(--bg-primary);
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(180deg, var(--bg-secondary), transparent);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.game-code-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.game-code-display .label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.game-code-display .code {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--accent-gold);
+  letter-spacing: 0.2em;
+  background: var(--bg-tertiary);
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.turn-indicator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.current-player-badge {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.status-message {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.leave-btn {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--player-red);
+  color: var(--player-red);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.leave-btn:hover {
+  background: var(--player-red);
+  color: white;
+}
+
+.game-main {
+  flex: 1;
+  display: flex;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.sidebar {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.sidebar h3 {
+  color: var(--accent-gold);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.left-sidebar {
+  padding-right: 1rem;
+}
+
+.right-sidebar {
+  padding-left: 1rem;
+}
+
+.board-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-width: 0;
+}
+
+.start-game-btn {
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--accent-green), #3a7a30);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.start-game-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(74, 139, 60, 0.4);
+}
+
+.my-resources-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(0deg, var(--bg-secondary), transparent);
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.dev-cards-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dev-cards-summary:hover {
+  border-color: var(--accent-gold);
+}
+
+.dev-cards-summary .label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.dev-cards-summary .count {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.dev-cards-summary .new-badge {
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.chat-toggle {
+  padding: 0.8rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  margin-top: auto;
+}
+
+.chat-toggle {
+  position: relative;
+}
+
+.chat-toggle:hover {
+  border-color: var(--accent-blue);
+  background: rgba(69, 123, 157, 0.2);
+}
+
+.chat-notification-dot {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 18px;
+  height: 18px;
+  background: #e63946;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.steal-modal {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.steal-modal h3 {
+  color: var(--accent-gold);
+  margin-bottom: 1.5rem;
+}
+
+.steal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.steal-btn {
+  padding: 0.8rem 1.5rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.steal-btn:hover:not(:disabled) {
+  border-color: var(--accent-gold);
+  background: rgba(212, 169, 66, 0.1);
+}
+
+.steal-btn .no-cards {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.steal-ok-btn {
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  background: var(--accent-gold);
+  border: none;
+  border-radius: 8px;
+  color: var(--bg-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.steal-ok-btn:hover {
+  background: #f4c430;
+  transform: scale(1.05);
+}
+
+/* Waiting phase styles */
+.waiting-badge {
+  background: var(--bg-tertiary) !important;
+  border: 1px solid var(--border-color);
+}
+
+.waiting-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.shuffle-btn {
+  padding: 0.8rem 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--accent-blue);
+  border-radius: 8px;
+  color: var(--accent-blue);
+  font-size: 1rem;
+}
+
+.shuffle-btn:hover {
+  background: rgba(69, 123, 157, 0.2);
+}
+
+.waiting-text {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 1rem;
+  font-style: italic;
+}
+
+/* Resource gain popup */
+.resource-gain-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 2px solid var(--accent-gold);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  z-index: 10000;
+  animation: resourcePopup 0.3s ease-out;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes resourcePopup {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.resource-gain-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.resource-gain-content {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+/* Trade Notification Banner */
+.trade-notification-banner {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #1a472a 0%, #2d5a27 100%);
+  border: 2px solid var(--accent-gold);
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 169, 66, 0.3);
+  animation: tradeBannerPulse 2s ease-in-out infinite, tradeBannerSlide 0.5s ease-out;
+}
+
+@keyframes tradeBannerSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes tradeBannerPulse {
+  0%, 100% {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 169, 66, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 169, 66, 0.5);
+  }
+}
+
+.trade-notification-banner:hover {
+  transform: translateX(-50%) scale(1.02);
+}
+
+.trade-notification-banner .trade-icon {
+  font-size: 1.5rem;
+  animation: tradeIconBounce 1s ease-in-out infinite;
+}
+
+@keyframes tradeIconBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.trade-notification-banner .trade-text {
+  color: white;
+  font-size: 0.95rem;
+}
+
+.trade-notification-banner .trade-text strong {
+  color: var(--accent-gold);
+}
+
+.trade-notification-banner .view-trade-btn {
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trade-notification-banner .view-trade-btn:hover {
+  background: #f4c430;
+  transform: scale(1.05);
+}
+
+.trade-notification-banner .dismiss-trade-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  margin-left: 0.5rem;
+}
+
+.trade-notification-banner .dismiss-trade-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+/* Robber Notification Banner */
+.robber-notification-banner {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #4a1a1a 0%, #6b2b2b 100%);
+  border: 2px solid #ff6b6b;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 107, 107, 0.3);
+  animation: robberBannerPulse 1s ease-in-out infinite, tradeBannerSlide 0.5s ease-out;
+}
+
+@keyframes robberBannerPulse {
+  0%, 100% {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 107, 107, 0.3);
+    border-color: #ff6b6b;
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 107, 107, 0.6);
+    border-color: #ff9999;
+  }
+}
+
+.robber-notification-banner .robber-icon {
+  font-size: 1.8rem;
+  animation: robberIconShake 0.5s ease-in-out infinite;
+}
+
+@keyframes robberIconShake {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.robber-notification-banner .robber-text {
+  color: white;
+  font-size: 1rem;
+}
+
+.robber-notification-banner .robber-text strong {
+  color: #ff6b6b;
+}
+
+/* Discard Notification Banner */
+.discard-notification-banner {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #4a3a1a 0%, #6b5a2b 100%);
+  border: 2px solid #f0ad4e;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(240, 173, 78, 0.3);
+  animation: tradeBannerSlide 0.5s ease-out;
+}
+
+.discard-notification-banner .discard-icon {
+  font-size: 1.5rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.discard-notification-banner .discard-text {
+  color: white;
+  font-size: 0.95rem;
+}
+
+/* Special Building Phase Banner (5-6 player extension) */
+.special-build-banner {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #1a4a1a 0%, #2b6b2b 100%);
+  border: 2px solid #6a994e;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(106, 153, 78, 0.3);
+  animation: specialBuildPulse 1.5s ease-in-out infinite, tradeBannerSlide 0.5s ease-out;
+}
+
+@keyframes specialBuildPulse {
+  0%, 100% {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(106, 153, 78, 0.3);
+    border-color: #6a994e;
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 30px rgba(106, 153, 78, 0.6);
+    border-color: #8fb974;
+  }
+}
+
+.special-build-banner .special-build-icon {
+  font-size: 1.8rem;
+  animation: specialBuildBounce 1s ease-in-out infinite;
+}
+
+@keyframes specialBuildBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.special-build-banner .special-build-text {
+  color: white;
+  font-size: 0.95rem;
+  max-width: 400px;
+}
+
+.special-build-banner .special-build-text strong {
+  color: #8fb974;
+}
+
+.special-build-done-btn {
+  background: linear-gradient(135deg, #6a994e 0%, #4a7c3e 100%);
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.special-build-done-btn:hover {
+  background: linear-gradient(135deg, #8fb974 0%, #6a994e 100%);
+  transform: scale(1.05);
+}
+

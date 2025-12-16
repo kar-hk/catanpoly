@@ -1,0 +1,186 @@
+.player-panel {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.5rem 0.6rem;
+  transition: all 0.3s ease;
+}
+
+.player-panel.current-turn {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 15px rgba(212, 169, 66, 0.3);
+}
+
+.player-panel.is-me {
+  background: linear-gradient(135deg, var(--bg-secondary), rgba(212, 169, 66, 0.1));
+}
+
+.player-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.turn-order-badge {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-color-badge {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.player-name {
+  flex: 1;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.you-badge {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.4rem;
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.victory-points {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  background: var(--bg-tertiary);
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+}
+
+.vp-number {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.hidden-vp {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  opacity: 0.6;
+  padding: 0 0.2rem;
+  cursor: help;
+  animation: secretPulse 2s ease-in-out infinite;
+}
+
+.revealed-vp {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--accent-gold);
+  opacity: 0.8;
+  padding: 0 0.2rem;
+  cursor: help;
+}
+
+@keyframes secretPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+.vp-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.player-stats {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.3rem;
+  padding: 0.3rem;
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+}
+
+.stat-icon {
+  font-size: 0.9rem;
+}
+
+.stat-value {
+  color: var(--text-secondary);
+}
+
+.player-pieces {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.piece-count {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.piece-icon {
+  font-size: 0.9rem;
+}
+
+.player-achievements {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.achievement {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-copper));
+  color: var(--bg-primary);
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Right-click info hint */
+.has-info {
+  cursor: context-menu;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.has-info:hover {
+  background-color: rgba(212, 169, 66, 0.1);
+  border-radius: 4px;
+}
+
+.stat.has-info:hover,
+.piece-count.has-info:hover {
+  transform: scale(1.05);
+}
+
